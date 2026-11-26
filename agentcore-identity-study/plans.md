@@ -7,6 +7,21 @@ Start date: Thu 2026-11-26. Pace: about 2 weeks, one block of 1.5 to 2 hours per
 - You have your own AWS account. Paid SimuLearn and Cloud Quest items are optional and not part of this plan.
 - Weakest area: JWT/OIDC and how AgentCore validates tokens. Spend extra time on `notes/03-jwt-oidc-cognito.md` and Lab 1.
 
+## Recommended courses and where they fit
+These are the five trainings you listed. Cost notes come from web searches on 2026-11-26. Check your own Skill Builder account for what you can open.
+
+| Course | Cost / access | Where it fits | Use it? |
+|--------|---------------|---------------|---------|
+| AWS SimuLearn: Getting Started with AgentCore Runtime | Skill Builder subscription (paid, per your note) | Before Lab 1 in Block 1, as a guided way to deploy a runtime | Optional. The free replacement is the runtime-oauth guide plus Lab 1 |
+| AWS SimuLearn: Identity and Access Management | Skill Builder subscription (paid, per your note) | Block 2, IAM refresher | Skip. Your security certification already covers it. Note 02 lists only the AgentCore-specific parts |
+| Building Production-Ready AI Agents with Amazon Bedrock AgentCore | Not confirmed. I found paid versions from Pluralsight, Coursera, Udemy and an AWS instructor-led class. I could not tell which one you mean | Blocks 2 to 4: pick the identity, security and observability modules only | Use if you already have access. Free replacement: the [prototype-to-production workshop](https://github.com/aws-samples/sample-amazon-bedrock-agentcore-prototype-to-production), module 5 (Identity) |
+| AWS Cloud Quest: Security | Skill Builder subscription for the full set (verify what is free) | Anytime, as a refresher | Low value given your certification. Do it last, if at all |
+| AWS Cloud Quest: Generative AI Architect | Same as above | Not tied to an exam objective | Low value for this exam. Skip unless you want the wider context |
+
+The microcredential exam itself is free. AWS removed the Skill Builder subscription requirement for microcredentials in April 2026 (source: the [Builder Center article](https://builder.aws.com/content/3IQwLMpiyWJbk8e07ubvnJqImnA/aws-hands-on-learning-in-2026-which-tool-should-you-use) found in search; confirm on the assessment page).
+
+Rule: a course only counts if it ends with you building and breaking something. The labs in this kit are the part that matches the exam format.
+
 ## The exam in short
 Sources: see `notes/06-references.md`. Confirm on the Skill Builder page before booking.
 - Hands-on lab, 135 minutes, AWS-provisioned environment, no hints, no multiple choice. Free.

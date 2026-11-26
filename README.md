@@ -15,6 +15,8 @@ Details come from third-party summaries and AWS announcements. Confirm them on t
 ## Where to start
 Open [agentcore-identity-study/plans.md](agentcore-identity-study/plans.md). It has the reading order, a 2-hour first block, the later blocks and a progress checklist.
 
+`plans.md` also maps the recommended courses (SimuLearn, Cloud Quest, "Building Production-Ready AI Agents with Amazon Bedrock AgentCore") to blocks and says which have a free replacement.
+
 The method is read, build, break on purpose, then fix. The exam is a fix-it lab, so reading alone will not be enough.
 
 ## Progress
