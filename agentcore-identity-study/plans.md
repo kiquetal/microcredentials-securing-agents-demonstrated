@@ -12,8 +12,8 @@ These are the five trainings you listed. Cost notes come from web searches on 20
 
 | Course | Cost / access | Where it fits | Use it? |
 |--------|---------------|---------------|---------|
-| AWS SimuLearn: Getting Started with AgentCore Runtime | Skill Builder subscription (paid, per your note) | Before Lab 1 in Block 1, as a guided way to deploy a runtime | Optional. The free replacement is the runtime-oauth guide plus Lab 1 |
-| AWS SimuLearn: Identity and Access Management | Skill Builder subscription (paid, per your note) | Block 2, IAM refresher | Skip. Your security certification already covers it. Note 02 lists only the AgentCore-specific parts |
+| AWS SimuLearn: Getting Started with AgentCore Runtime | Paid. You are not using it | Block 1, before Lab 1 | Replaced by [courses/01-replaces-simulearn-agentcore-runtime](../courses/01-replaces-simulearn-agentcore-runtime/README.md): AgentCore CLI guide, deploy a plain runtime, inspect its role and identity (about 90 min) |
+| AWS SimuLearn: Identity and Access Management | Paid. You are not using it | Block 2, before Lab 2 | Replaced by [courses/02-replaces-simulearn-iam](../courses/02-replaces-simulearn-iam/README.md): ABAC tutorial, policy simulator, Access Analyzer validation, AgentCore action support table (about 75 min) |
 | Building Production-Ready AI Agents with Amazon Bedrock AgentCore | Not confirmed. I found paid versions from Pluralsight, Coursera, Udemy and an AWS instructor-led class. I could not tell which one you mean | Blocks 2 to 4: pick the identity, security and observability modules only | Use if you already have access. Free replacement: the [prototype-to-production workshop](https://github.com/aws-samples/sample-amazon-bedrock-agentcore-prototype-to-production), module 5 (Identity) |
 | AWS Cloud Quest: Security | Skill Builder subscription for the full set (verify what is free) | Anytime, as a refresher | Low value given your certification. Do it last, if at all |
 | AWS Cloud Quest: Generative AI Architect | Same as above | Not tied to an exam objective | Low value for this exam. Skip unless you want the wider context |
@@ -57,14 +57,14 @@ The exam is a fix-it lab, so reading alone will not pass it. For each topic:
 | Time | Activity |
 |------|----------|
 | 0:00 - 0:10 | Confirm CLI profile and region (`aws sts get-caller-identity`). Install or update the AWS CLI, `jq`, and the AgentCore CLI (see Lab 1 prerequisites). Optional: a budget alert if you do not already have one. |
-| 0:10 - 0:40 | Read notes 00, 01 and 03. Open the official [runtime-oauth page](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html) beside them. |
+| 0:10 - 0:40 | Read notes 00, 01 and 03. (SimuLearn replacement steps 1 to 3 in `courses/01-...` can replace the second half of this slot if you want more runtime practice.) Open the official [runtime-oauth page](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html) beside them. |
 | 0:40 - 1:45 | [Lab 1](labs/lab-01-cognito-jwt-runtime.md): Cognito, JWT authorizer, deploy, invoke with a valid token, a wrong client, and a bad token. |
 | 1:45 - 2:00 | Fill the Lab 1 results table. Add three lines to `cheatsheet.md`. Run the cleanup checklist. |
 
 ### Later blocks
 | Block | Content | Lab |
 |-------|---------|-----|
-| 2 | Self-hosted workload identity, workload access token, tag-based IAM (objective 1). Read note 02. | [Lab 2](labs/lab-02-self-hosted-identity-tags.md) |
+| 2 | First the [IAM replacement](../courses/02-replaces-simulearn-iam/README.md) (75 min), then self-hosted workload identity, workload access token, tag-based IAM (objective 1). Read note 02. | [Lab 2](labs/lab-02-self-hosted-identity-tags.md) |
 | 3 | SigV4 path versus JWT path, resource-based policy, one authorizer type per runtime (objective 2). | [Lab 3](labs/lab-03-sigv4-vs-jwt.md) |
 | 4 | Detection with CloudTrail and CloudWatch (objective 3). Read note 04. | [Lab 4](labs/lab-04-detection.md) |
 | 5 | Timed 135-minute dry run. Ask a friend or write the scenario yourself, then break and fix. | [Lab 5](labs/lab-05-timed-dry-run.md) |
