@@ -15,7 +15,7 @@ Details come from third-party summaries and AWS announcements. Confirm them on t
 ## Where to start
 Open [agentcore-identity-study/plans.md](agentcore-identity-study/plans.md). It has the reading order, a 2-hour first block, the later blocks and a progress checklist.
 
-`plans.md` also maps the recommended courses (SimuLearn, Cloud Quest, "Building Production-Ready AI Agents with Amazon Bedrock AgentCore") to blocks and says which have a free replacement.
+`plans.md` also maps the recommended courses (SimuLearn, Cloud Quest, "Building Production-Ready AI Agents with Amazon Bedrock AgentCore") to blocks and says which have a free replacement. Take your notes for each course in its own folder under [courses/](courses/README.md).
 
 The method is read, build, break on purpose, then fix. The exam is a fix-it lab, so reading alone will not be enough.
 
@@ -48,6 +48,7 @@ This README is the main status file. Update it whenever a block, lab or note cha
 | [labs/lab-03-sigv4-vs-jwt.md](agentcore-identity-study/labs/lab-03-sigv4-vs-jwt.md) | SigV4 versus JWT, resource policy, scoped JWT |
 | [labs/lab-04-detection.md](agentcore-identity-study/labs/lab-04-detection.md) | CloudTrail and CloudWatch detection |
 | [labs/lab-05-timed-dry-run.md](agentcore-identity-study/labs/lab-05-timed-dry-run.md) | 135-minute timed dry run |
+| [courses/](courses/README.md) | One notes template per recommended course (SimuLearn, Cloud Quest, Production-Ready Agents), with priority and status |
 
 ## Requirements
 - An AWS account where you can create Cognito pools, IAM roles, AgentCore runtimes and workload identities. A Bedrock model enabled for the sample agent in Lab 1.

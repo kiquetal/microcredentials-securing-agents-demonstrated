@@ -22,6 +22,8 @@ The microcredential exam itself is free. AWS removed the Skill Builder subscript
 
 Rule: a course only counts if it ends with you building and breaking something. The labs in this kit are the part that matches the exam format.
 
+Take notes for each course in its own folder: [courses/](../courses/README.md).
+
 ## The exam in short
 Sources: see `notes/06-references.md`. Confirm on the Skill Builder page before booking.
 - Hands-on lab, 135 minutes, AWS-provisioned environment, no hints, no multiple choice. Free.
