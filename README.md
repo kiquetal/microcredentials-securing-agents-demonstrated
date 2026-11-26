@@ -17,6 +17,18 @@ Open [agentcore-identity-study/plans.md](agentcore-identity-study/plans.md). It 
 
 The method is read, build, break on purpose, then fix. The exam is a fix-it lab, so reading alone will not be enough.
 
+## Progress
+This README is the main status file. Update it whenever a block, lab or note changes. Last updated: 2026-11-26.
+
+| Block | Content | Status |
+|-------|---------|--------|
+| 1 | Notes 00, 01, 03 and Lab 1 | not started |
+| 2 | Note 02 and Lab 2 (self-hosted identity, tags) | not started |
+| 3 | Lab 3 (SigV4 vs JWT) | not started |
+| 4 | Note 04 and Lab 4 (detection) | not started |
+| 5 | Lab 5 (timed dry run) | not started |
+| 6 | Cheat sheet review and exam | not started |
+
 ## Contents
 | Path | What it is |
 |------|------------|
