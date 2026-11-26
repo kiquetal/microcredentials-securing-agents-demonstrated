@@ -43,6 +43,7 @@ This README is the main status file. Update it whenever a block, lab or note cha
 | [notes/04-detection-cloudtrail-cloudwatch.md](agentcore-identity-study/notes/04-detection-cloudtrail-cloudwatch.md) | Metrics, spans, CloudTrail, alarm patterns |
 | [notes/05-troubleshooting-table.md](agentcore-identity-study/notes/05-troubleshooting-table.md) | Symptom, cause, fix |
 | [notes/06-references.md](agentcore-identity-study/notes/06-references.md) | All links and video search terms |
+| [notes/07-component-map-and-protections.md](agentcore-identity-study/notes/07-component-map-and-protections.md) | ASCII map of AgentCore components, who talks to whom, and how to protect each connection |
 | [labs/lab-01-cognito-jwt-runtime.md](agentcore-identity-study/labs/lab-01-cognito-jwt-runtime.md) | Cognito, JWT authorizer, deploy, break and record errors |
 | [labs/lab-02-self-hosted-identity-tags.md](agentcore-identity-study/labs/lab-02-self-hosted-identity-tags.md) | Self-hosted workload identity and tag-based access |
 | [labs/lab-03-sigv4-vs-jwt.md](agentcore-identity-study/labs/lab-03-sigv4-vs-jwt.md) | SigV4 versus JWT, resource policy, scoped JWT |
@@ -57,7 +58,7 @@ This README is the main status file. Update it whenever a block, lab or note cha
 
 ## Accuracy
 Facts were checked against the AWS developer guide on 2026-11-26. Anything not confirmed is marked "(verify in docs)" in the notes. Known open points:
-- Which AgentCore Identity and Runtime calls appear in CloudTrail. The docs I read list CloudTrail coverage only for Gateway and Agent Registry. Lab 4 has you find out in your own account.
+- Which AgentCore Identity calls appear in CloudTrail. The docs say Runtime invoke and control plane calls are recorded, and list explicit CloudTrail pages only for Gateway and Agent Registry. Identity calls are unconfirmed. Lab 4 has you find out in your own account.
 - Which AgentCore IAM actions support `aws:ResourceTag` conditions. Check the [Service Authorization Reference](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonbedrockagentcore.html).
 - Some lab commands are marked "check with `help`" because I could not confirm the exact CLI names. The service and CLI change often, so trust the current AWS docs over these notes.
 

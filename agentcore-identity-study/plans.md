@@ -50,6 +50,7 @@ The exam is a fix-it lab, so reading alone will not pass it. For each topic:
 | 5 | [notes/04-detection-cloudtrail-cloudwatch.md](notes/04-detection-cloudtrail-cloudwatch.md) | Objective 3 |
 | 6 | [notes/05-troubleshooting-table.md](notes/05-troubleshooting-table.md) | Symptom to fix |
 | 7 | [notes/06-references.md](notes/06-references.md) | Links and video search terms |
+| 8 | [notes/07-component-map-and-protections.md](notes/07-component-map-and-protections.md) | ASCII map of AgentCore components and how to protect each connection. Read after note 01 if you prefer the big picture first |
 
 ## Schedule
 
