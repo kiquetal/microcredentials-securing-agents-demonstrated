@@ -20,9 +20,10 @@ Namespace `AWS/Usage`: `CallCount`, `ThrottleCount` (dimensions Service, Type, C
 - Spans go to the `aws/spans` log group. Operations: `GetWorkloadAccessToken`, `GetWorkloadAccessTokenForJWT` (adds `issuer`, `user_sub`), `GetWorkloadAccessTokenForUserId`, `GetResourceOAuth2Token`, `GetResourceAPIKey`. Attributes include `workload.identity.id`, `error_type`, `latency_ms`.
 - Application logs have fields `resource_arn`, `account_id`, `request_id`, `trace_id`, `span_id`, `service_name` (`BedrockAgentCore.Identity`), `operation`, `request_payload`, `response_payload`. They can go to CloudWatch Logs, S3 or Firehose.
 
-**CloudTrail.** The [observability overview](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html) says CloudTrail coverage is currently documented for **AgentCore Gateway** and **Agent Registry** only.
+**CloudTrail.** The [observability overview](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html) says CloudTrail coverage is currently documented for **AgentCore Gateway** and **Agent Registry**.
+- The [Runtime security best practices](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-security-best-practices.html) page also says CloudTrail records `InvokeAgentRuntime`, `InvokeAgentRuntimeCommand`, `InvokeAgentRuntimeCommandShell` and control plane operations, with caller identity, timestamp, source IP and response status. Use the request ID to join CloudTrail with the runtime's CloudWatch Logs.
 - The runtime-oauth page and the workload-token page both tell you to use CloudTrail to watch `InvokeAgentRuntime` calls that include `runtimeUserId`, and `GetWorkloadAccessTokenForUserId` calls.
-- Whether Identity and Runtime data-plane calls appear as management events, data events or not at all is **not confirmed in the docs I read (verify in docs and in your account)**.
+- Whether Identity calls (workload identity create/delete/tag, `GetWorkloadAccessToken*`) appear as management events, data events or not at all is **not confirmed in the docs I read (verify in docs and in your account)**.
 
 ## Lab 4 discovery tasks (do these, record the answers here)
 | Question | Answer from your account |
