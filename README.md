@@ -72,6 +72,8 @@ The repo has a Kiro agent in [.kiro/agents/agentcore-lab-coach.json](.kiro/agent
 
 Rules the agent follows: it works inside `lab-workdir/` (git-ignored), tags resources with `Project=agentcore-study`, never writes tokens or real account IDs into files, and asks before deletes outside a cleanup checklist. This repo is public, so keep it that way.
 
+Permissions: the agent is pre-approved to run shell commands (including `git`, `aws`, `agentcore`, `jq`, `python3`, `uv`, `npm`, `curl`, `gh`), AWS API calls, file writes inside this repo's folders, and web fetches, so it does not ask on every step. It is still blocked from force-push, `git reset --hard`, `rm -rf` on `/`, `~` or `..`, creating IAM users or access keys, `aws organizations`, and `gh repo delete`. Run it only in a test account. Change the lists in [.kiro/agents/agentcore-lab-coach.json](.kiro/agents/agentcore-lab-coach.json) to tighten or loosen this.
+
 ## Requirements
 - An AWS account where you can create Cognito pools, IAM roles, AgentCore runtimes and workload identities. A Bedrock model enabled for the sample agent in Lab 1.
 - AWS CLI (latest), `jq`, `python3`, `uv`, Node.js 20.12 or later, and the AgentCore CLI (`npm install -g @aws/agentcore`, see [Get started](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html)).
