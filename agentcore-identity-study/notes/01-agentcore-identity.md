@@ -96,6 +96,65 @@ Exam objective 1 says "provision identities for self-hosted agents" because nobo
 
 **Provision once, fetch per request.** A workload identity is a long-lived registration. You create it once per agent (one identity and one IAM role per agent). Do not create one per request or per user. At run time the agent fetches a workload access token from that identity. For a user request it calls `GetWorkloadAccessTokenForJWT`, which adds the user (`iss` + `sub`) to the token. The identity stays the same. Token lifetime is not stated in the notes (verify in docs).
 
+### Sequence: self-hosted agent with tag-based access (Lab 2)
+```
+   Admin                IAM           AgentCore Identity       Agent (role A)
+     |                   |                     |                      |
+   SETUP: once per agent, by an admin          |                      |
+     | 1. create-workload-identity lab-agent-a, tag Team=red          |
+     |---------------------------------------->|                      |
+     | 2. create role LabAgentRoleA, tag Team=red                     |
+     |------------------>|                     |                      |
+     | 3. Allow GetWorkloadAccessToken on directory + identity/*      |
+     |------------------>|                     |                      |
+     | 4. if ResourceTag/Team = PrincipalTag/Team; Deny TagResource   |
+     |------------------>|                     |                      |
+   RUN TIME: every request                     |                      |
+     |                   |                     | 5. GetWorkloadAccessToken(lab-agent-a)
+     |                   |                     |<---------------------|
+     |                   | 6. check: identity tag Team=red, role tag Team=red
+     |                   |<--------------------|                      |
+     |                   | 7. tags match, allow|                      |
+     |                   |-------------------->|                      |
+     |                   |                     | 8. workload access token
+     |                   |                     |--------------------->|
+     |                   |                     | 9. GetWorkloadAccessToken(lab-agent-b, tagged Team=blue)
+     |                   |                     |<---------------------|
+     |                   |                     | 10. AccessDenied: tags differ
+     |                   |                     |--------------------->|
+     |                   |                     |                      |
+```
+Steps 3 and 4 are the pattern from note 02. Whether each AgentCore action supports `aws:ResourceTag` is not confirmed (verify in docs and in Lab 2). Step 6 is a simplification: IAM evaluates the caller's policy when the API call arrives.
+
+### Sequence: Runtime-hosted agent (Lab 1)
+```
+  Client              Runtime         AgentCore Identity         Agent code
+     |                   |                     |                      |
+   SETUP: once, by the developer               |                      |
+     | 1. agentcore add runtime ... --authorizer-type CUSTOM_JWT      |
+     |------------------>|                     |                      |
+     |                   | 2. Runtime creates the workload identity for you
+     |                   |-------------------->|                      |
+   RUN TIME: every request                     |                      |
+     | 3. InvokeAgentRuntime, Authorization: Bearer <JWT>             |
+     |------------------>|                     |                      |
+   4. authorizer checks iss, client_id/aud, scope, claims (401 if any fails)
+     |                   | 5. GetWorkloadAccessTokenForJWT (iss + sub)|
+     |                   |-------------------->|                      |
+     |                   | 6. workload access token                   |
+     |                   |<--------------------|                      |
+     |                   | 7. run your code, token in header WorkloadAccessToken
+     |                   |------------------------------------------->|
+     |                   |                     | 8. token vault call, e.g. GetResourceOauth2Token (later labs)
+     |                   |                     |<---------------------|
+     |                   |                     | 9. agent code calls GetWorkloadAccessToken itself
+     |                   |                     |<---------------------|
+     |                   |                     | 10. error: identity is linked to a service
+     |                   |                     |--------------------->|
+     |                   |                     |                      |
+```
+In step 10 the full error text is "WorkloadIdentity is linked to a service and cannot retrieve an access token by the caller".
+
 ## Inbound auth (Runtime)
 Source: [runtime-oauth](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html), [inbound-jwt-authorizer](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/inbound-jwt-authorizer.html)
 
