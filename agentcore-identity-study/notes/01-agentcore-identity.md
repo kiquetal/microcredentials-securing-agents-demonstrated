@@ -54,6 +54,48 @@ Source: [get-workload-access-token](https://docs.aws.amazon.com/bedrock-agentcor
   c.get_workload_access_token(workload_name="my-agent", user_id="<id>")       # pattern 2
   ```
 
+## Runtime-hosted vs self-hosted agents
+Runtime runs your agent code. Identity names the agent and handles tokens and credentials. Runtime uses Identity, but Identity also works for agents that do not run on Runtime.
+
+```
+CASE A: hosted agent (Runtime does the work for you)
+
+ caller --JWT--> +-------------------------+
+                 | AGENTCORE RUNTIME       |   (compute: microVM per session)
+                 |  1. checks the JWT      |
+                 |  2. fetches token  -----+------>  +-------------------------+
+                 |  3. runs your code      |         | AGENTCORE IDENTITY      |
+                 |     (gets token in a    | <------ |  workload identity      |
+                 |      header)            |  token  |  (AUTO-CREATED)         |
+                 +-------------------------+         |  token vault            |
+                                                     +-------------------------+
+ You configure: authorizer only. Runtime creates the identity and fetches
+ the tokens. Your code cannot fetch them itself.
+
+
+CASE B: self-hosted agent (you do the work)
+
+ +--------------------------+                        +-------------------------+
+ | EC2 / ECS / EKS /        |  your IAM role calls   | AGENTCORE IDENTITY      |
+ | on-prem / laptop         | ---------------------> |  workload identity      |
+ | your agent code          |  GetWorkloadAccessToken|  (YOU CREATE IT:        |
+ | (no AgentCore Runtime)   | <--------------------- |   create-workload-      |
+ +--------------------------+         token          |   identity)             |
+                                                     +-------------------------+
+ You configure: the identity, the tags, and the IAM role that may fetch tokens.
+```
+
+| | Runtime-hosted | Self-hosted |
+|---|---|---|
+| Where the code runs | AgentCore Runtime | Your own EC2, ECS, EKS, on-prem or laptop |
+| Workload identity | Created automatically | You create it |
+| Fetching workload access tokens | Runtime does it. Agent code is blocked from calling the API. | Your code or role calls the API |
+| Who decides access | Authorizer plus IAM | Your IAM role, scoped to the identity ARN, plus tags |
+
+Exam objective 1 says "provision identities for self-hosted agents" because nobody creates the identity for you in Case B. Lab 1 covers Case A. Lab 2 covers Case B.
+
+**Provision once, fetch per request.** A workload identity is a long-lived registration. You create it once per agent (one identity and one IAM role per agent). Do not create one per request or per user. At run time the agent fetches a workload access token from that identity. For a user request it calls `GetWorkloadAccessTokenForJWT`, which adds the user (`iss` + `sub`) to the token. The identity stays the same. Token lifetime is not stated in the notes (verify in docs).
+
 ## Inbound auth (Runtime)
 Source: [runtime-oauth](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html), [inbound-jwt-authorizer](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/inbound-jwt-authorizer.html)
 
