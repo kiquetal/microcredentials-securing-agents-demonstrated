@@ -80,6 +80,7 @@ If you have more time, add a second dry run before Block 6. Speed matters: 135 m
 - Do not paste real tokens or secrets into these files.
 
 ## Progress checklist
+Detailed tracking (lab steps, open questions, session log) lives in [progress.md](progress.md). The lab coach agent updates it for you.
 - [ ] Block 1: notes 00, 01, 03 read. Lab 1 done and cleaned up.
 - [ ] Block 2: note 02 read. Lab 2 done and cleaned up.
 - [ ] Block 3: Lab 3 done and cleaned up.
