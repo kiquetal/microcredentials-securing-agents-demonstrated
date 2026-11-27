@@ -45,6 +45,7 @@ This README is the main status file. Update it whenever a block, lab or note cha
 | [notes/05-troubleshooting-table.md](agentcore-identity-study/notes/05-troubleshooting-table.md) | Symptom, cause, fix |
 | [notes/06-references.md](agentcore-identity-study/notes/06-references.md) | All links and video search terms |
 | [notes/07-component-map-and-protections.md](agentcore-identity-study/notes/07-component-map-and-protections.md) | ASCII map of AgentCore components, who talks to whom, and how to protect each connection |
+| [diagrams/lab-01-agentcore-components.png](agentcore-identity-study/diagrams/lab-01-agentcore-components.png) | Lab 1 diagram of the AgentCore parts only (Runtime JWT authorizer, workload identity, workload access token, detection), mapped to the three exam objectives. Editable source: `.drawio` in the same folder. Export PNG with `docker run --rm -v "$PWD":/data -w /data rlespinasse/drawio-export:v4.5.0 --format png --border 20 --scale 1.5 --remove-page-suffix --output . FILE.drawio` (run as root, not `--user`) |
 | [labs/lab-01-cognito-jwt-runtime.md](agentcore-identity-study/labs/lab-01-cognito-jwt-runtime.md) | Cognito, JWT authorizer, deploy, break and record errors |
 | [labs/lab-02-self-hosted-identity-tags.md](agentcore-identity-study/labs/lab-02-self-hosted-identity-tags.md) | Self-hosted workload identity and tag-based access |
 | [labs/lab-03-sigv4-vs-jwt.md](agentcore-identity-study/labs/lab-03-sigv4-vs-jwt.md) | SigV4 versus JWT, resource policy, scoped JWT |
