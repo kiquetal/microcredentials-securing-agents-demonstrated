@@ -1,0 +1,10 @@
+# Lab working copies (AgentCore projects, Cognito scripts, tokens). Never commit.
+lab-workdir/
+*.env
+.env.local
+**/.env.local
+cdk.out/
+node_modules/
+.venv/
+__pycache__/
+*.pem
