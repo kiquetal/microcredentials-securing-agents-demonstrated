@@ -4,7 +4,8 @@ Goal: deploy a runtime with a JWT authorizer, call it with a valid token, then b
 Time: about 65 minutes. Region used below: `us-east-1`. Source: [runtime-oauth](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html). Commands were copied from that page. If one fails, read the page, because the CLI changes often.
 
 ## Prerequisites
-- AWS CLI (latest), `jq`, `python3`, and the AgentCore CLI. Install steps: [Get started with the AgentCore CLI](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-cli.html).
+- AWS CLI (latest), `jq`, `python3`, `uv`, Node.js 20.12 or later, and the AgentCore CLI: `npm install -g @aws/agentcore`, then `agentcore --version`. Setup details: [Get started with Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html).
+- Work inside `lab-workdir/` at the repo root (it is git-ignored). Never commit the project's `.env.local` or tokens.
 - Your principal can create Cognito, IAM service-linked roles, and AgentCore runtimes. The creating role needs `iam:CreateServiceLinkedRole` for `runtime-identity.bedrock-agentcore.amazonaws.com`.
 - Model access for the sample agent (Strands uses a Bedrock model by default). If the agent call fails on model access, enable the model in Bedrock. The auth tests still prove the authorizer works.
 

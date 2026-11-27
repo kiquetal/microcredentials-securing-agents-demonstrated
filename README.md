@@ -51,9 +51,30 @@ This README is the main status file. Update it whenever a block, lab or note cha
 | [labs/lab-05-timed-dry-run.md](agentcore-identity-study/labs/lab-05-timed-dry-run.md) | 135-minute timed dry run |
 | [courses/](courses/README.md) | One notes template per recommended course (SimuLearn, Cloud Quest, Production-Ready Agents), with priority and status |
 
+## Lab coach agent (Kiro)
+The repo has a Kiro agent in [.kiro/agents/agentcore-lab-coach.json](.kiro/agents/agentcore-lab-coach.json). It runs the labs with you in your own AWS account, records the real errors in the lab tables, runs the cleanup checklists, and updates this README. It only exists in this repo, not in `~/.kiro/agents`.
+
+### How to start testing
+1. **Install the tools** (the AgentCore CLI is not installed by default):
+   ```bash
+   npm install -g @aws/agentcore      # needs Node.js 20.12 or later
+   agentcore --version
+   ```
+   If that errors, an old pip package named `bedrock-agentcore-starter-toolkit` may be shadowing it. Run `pip uninstall bedrock-agentcore-starter-toolkit` and open a new terminal.
+2. **Point the AWS CLI at a test account:** `aws sts get-caller-identity` and `aws configure get region`. Use `us-east-1` unless you have a reason not to.
+3. **Start the agent from the repo root:**
+   ```bash
+   kiro-cli chat --agent agentcore-lab-coach
+   ```
+   Or inside a chat session, run `/agent swap agentcore-lab-coach`.
+4. **Say:** `setup`. It checks your tools, profile and region.
+5. **Then say:** `start lab 1`. Work one lab per session and let it run the cleanup at the end.
+
+Rules the agent follows: it works inside `lab-workdir/` (git-ignored), tags resources with `Project=agentcore-study`, never writes tokens or real account IDs into files, and asks before deletes outside a cleanup checklist. This repo is public, so keep it that way.
+
 ## Requirements
 - An AWS account where you can create Cognito pools, IAM roles, AgentCore runtimes and workload identities. A Bedrock model enabled for the sample agent in Lab 1.
-- AWS CLI (latest), `jq`, `python3`, and the [AgentCore CLI](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-cli.html).
+- AWS CLI (latest), `jq`, `python3`, `uv`, Node.js 20.12 or later, and the AgentCore CLI (`npm install -g @aws/agentcore`, see [Get started](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html)).
 - Labs create billable resources. Each lab ends with a cleanup checklist. Run it at the end of every session.
 
 ## Accuracy
