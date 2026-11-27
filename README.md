@@ -20,7 +20,7 @@ Open [agentcore-identity-study/plans.md](agentcore-identity-study/plans.md). It 
 The method is read, build, break on purpose, then fix. The exam is a fix-it lab, so reading alone will not be enough.
 
 ## Progress
-This README is the main status file. Update it whenever a block, lab or note changes. Last updated: 2026-11-26.
+This README is the main status file. Update it whenever a block, lab or note changes. Detailed tracking is in [agentcore-identity-study/progress.md](agentcore-identity-study/progress.md). Last updated: 2026-11-26.
 
 | Block | Content | Status |
 |-------|---------|--------|
@@ -35,6 +35,7 @@ This README is the main status file. Update it whenever a block, lab or note cha
 | Path | What it is |
 |------|------------|
 | [plans.md](agentcore-identity-study/plans.md) | Study plan, schedule, checklist |
+| [progress.md](agentcore-identity-study/progress.md) | Detailed tracker the lab coach agent reads and updates: next action, lab steps, open questions, session log |
 | [cheatsheet.md](agentcore-identity-study/cheatsheet.md) | One-page sheet you fill in as you study |
 | [notes/00-mental-model.md](agentcore-identity-study/notes/00-mental-model.md) | The four questions: who is the agent, who may call it, what may it call, who did what |
 | [notes/01-agentcore-identity.md](agentcore-identity-study/notes/01-agentcore-identity.md) | Workload identities, workload access tokens, inbound and outbound auth |
